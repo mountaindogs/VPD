@@ -11,11 +11,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-
+  
       - name: Update CSV
         run: |
-          # Fetch the CSV file from a specific URL and update local data.csv
-          curl -LJO 'https://drive.google.com/uc?export=download&id=13YcQYdXEI2s-rJW4Bmskz7458mCIw56y'
+          curl -LJb 'https://drive.google.com/uc?export=download&id=13YcQYdXEI2s-rJW4Bmskz7458mCIw56y' -o data.csv
+
           
       - name: Commit Changes
         run: |
