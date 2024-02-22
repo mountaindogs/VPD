@@ -1,1 +1,26 @@
+name: Update CSV
 
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # Run every 10 minutes
+
+jobs:
+  update-csv:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Update CSV
+        run: |
+          # Your script to update the CSV file goes here
+          echo "Updated content" > data.csv
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add data.csv
+          git commit -m "Auto-update CSV [skip ci]"
+          git push
