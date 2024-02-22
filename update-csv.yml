@@ -1,8 +1,8 @@
-name: Update CSV
+name: Update and Publish CSV
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Run every 5 minutes
+    - cron: '*/10 * * * *'  # Run every 10 minutes
 
 jobs:
   update-csv:
@@ -12,18 +12,24 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Install gdown
+      - name: Update CSV
         run: |
-          pip install gdown
+          # Fetch the CSV file from a specific URL and update local data.csv
+          curl -o data.csv https://drive.google.com/file/d/1nHlvm7XkD0NqQMJ-pOp0-DdQcLEiRN11/view?usp=drive_link
 
-      - name: Download CSV from Google Drive
-        run: |
-          gdown --id 1nHlvm7XkD0NqQMJ-pOp0-DdQcLEiRN11 -O data.csv
-
-      - name: Commit and Push Changes
+      - name: Commit Changes
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
           git add data.csv
           git commit -m "Auto-update CSV [skip ci]"
+
+      - name: Push Changes
+        run: |
           git push
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./  # The root directory containing data.csv
