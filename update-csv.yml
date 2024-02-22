@@ -15,7 +15,7 @@ jobs:
       - name: Update CSV
         run: |
           # Fetch the CSV file from a specific URL and update local data.csv
-          curl -o data.csv https://drive.google.com/uc?export=download&id=13YcQYdXEI2s-rJW4Bmskz7458mCIw56y
+          curl -LJO 'https://drive.google.com/uc?export=download&id=13YcQYdXEI2s-rJW4Bmskz7458mCIw56y'
           
       - name: Commit Changes
         run: |
