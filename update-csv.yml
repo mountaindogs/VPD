@@ -2,7 +2,7 @@ name: Update CSV
 
 on:
   schedule:
-    - cron: '*/30 * * * *'  # Run every 10 minutes
+    - cron: '*/10 * * * *'  # Run every 10 minutes
 
 jobs:
   update-csv:
@@ -14,9 +14,8 @@ jobs:
 
       - name: Update CSV
         run: |
-          # Your script to update the CSV file goes here
-          echo "Updated content" > data.csv
-
+          # Fetch the CSV file from a specific URL and update local data.csv
+          curl -o data.csv https://drive.google.com/uc?export=download&id=1nHlvm7XkD0NqQMJ-pOp0-DdQcLEiRN11
       - name: Commit and Push Changes
         run: |
           git config --global user.email "github-actions@github.com"
