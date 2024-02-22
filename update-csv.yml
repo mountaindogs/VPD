@@ -15,8 +15,8 @@ jobs:
       - name: Update CSV
         run: |
           # Fetch the CSV file from a specific URL and update local data.csv
-          curl -o data.csv https://drive.google.com/file/d/1nHlvm7XkD0NqQMJ-pOp0-DdQcLEiRN11/view?usp=drive_link
-
+          curl -o data.csv https://drive.google.com/uc?export=download&id=13YcQYdXEI2s-rJW4Bmskz7458mCIw56y
+          
       - name: Commit Changes
         run: |
           git config --global user.email "github-actions@github.com"
