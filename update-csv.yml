@@ -2,7 +2,7 @@ name: Update and Publish CSV
 
 on:
   schedule:
-    - cron: '*/10 * * * *'  # Run every 10 minutes
+    - cron: '*/1 * * * *'  # Run every 1 minutes
 
 jobs:
   update-csv:
@@ -14,7 +14,7 @@ jobs:
 
       - name: Update CSV
         run: |
-          curl -LJb 'https://drive.google.com/uc?export=download&id=13YcQYdXEI2s-rJW4Bmskz7458mCIw56y' -o data.csv
+         curl -fsSL "https://drive.google.com/uc?export=download&id=13YcQYdXEI2s-rJW4Bmskz7458mCIw56y"
 
 
       - name: Commit Changes
