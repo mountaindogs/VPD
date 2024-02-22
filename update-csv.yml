@@ -12,10 +12,14 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Update CSV
+      - name: Install gdown
         run: |
-          # Fetch the CSV file from a specific URL and update local data.csv
-          curl -o data.csv https://drive.google.com/uc?export=download&id=1nHlvm7XkD0NqQMJ-pOp0-DdQcLEiRN11
+          pip install gdown
+
+      - name: Download CSV from Google Drive
+        run: |
+          gdown --id 1nHlvm7XkD0NqQMJ-pOp0-DdQcLEiRN11 -O data.csv
+
       - name: Commit and Push Changes
         run: |
           git config --global user.email "github-actions@github.com"
